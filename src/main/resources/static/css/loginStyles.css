@@ -1,0 +1,97 @@
+/* Sign-in Page Styles */
+
+/* General container */
+.container {
+  max-width: 400px;
+  margin-top: 50px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Header style */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: rgb(14, 105, 241);
+  border-color: rgb(16, 130, 205);
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+/* Form Label */
+.form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input field styling */
+.form-control {
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control.is-invalid {
+  border-color: #d9534f;
+}
+
+.form-control.is-valid {
+  border-color: #5cb85c;
+}
+
+/* Feedback Messages */
+.alert {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #d9534f;
+  border: 1px solid #d9534f;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #5cb85c;
+  border: 1px solid #5cb85c;
+}
+
+/* Footer text for additional links */
+.footer-text {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.footer-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* Additional styling for notes or small text */
+.note {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}

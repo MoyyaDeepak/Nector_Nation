@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/styles2.css">
+
+    <style>
+
+                    body {
+                        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)),url('/images/pngtree-top-view-3d-honeycomb-abstract-background-in-yellow-render-picture-image_3701009.jpg'); /* Replace with your image path */
+    background-size: cover; /* Cover the entire screen */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-position: center; /* Center the image */
+    font-family: "Stylish", serif;
+  font-weight: 900;
+  font-style: normal; /* Stylish font for body text */
+    color: #5d3a1a; /* Dark brown for text for better contrast */
+    min-height: 100vh;
+        }
+
+        h1,h2 {
+            font-family: 'Playfair Display', serif; /* Stylish font for headings */
+            color: #f0ece0; /* Darker color for headings */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2{
+            color: #ddd;
+        }
+
+        .row {
+            justify-content: center;
+            margin: 0px;
+        }
+
+        .horizontal-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+.list-group {
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+ /* Remove left margin from the list group */
+}
+#row-category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#block {
+            background-color: #f2b423;
+            color: rgb(0, 0, 0);
+            padding: 15px; /* Adjusted padding for a better fit */
+            border-radius: 10px; /* Rounded corners */
+            width: 120px; /* Fixed width for each block */
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        #block:hover {
+            transform: scale(1.1); /* Slight scale effect on hover */
+            background-color: #fefe07; /* Darker green on hover */
+        }
+
+.list-group-item {
+    margin-bottom: 5px; /* Reduce space between list items */
+    padding: 10px 15px; /* Adjust padding to reduce size */
+}
+.list-group-item {
+    transition: background-color 0.3s;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+        .collapse {
+            display: none;
+        }
+        .collapse:target {
+            display: block;
+        }
+        .category-card {
+            text-align: center;
+            margin: 15px;
+        }
+        .product-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Space below each product card */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for zoom and shadow */
+    background-color: white; /* White background for product cards */
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Zoom in effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.product-card img {
+    border-radius: 5px;
+    width: 250px;
+    height:250px;
+    justify-content: center;
+    margin: 0 auto;
+
+}
+
+        .caption {
+            text-align: center;
+        }
+
+        .caption h3 {
+            font-family: 'Arial', sans-serif; /* Custom font for product titles */
+            font-size: 18px; /* Font size for titles */
+            color: #333; /* Darker color for titles */
+            margin: 10px 0;
+        }
+
+        .caption p {
+            font-size: 14px; /* Font size for text */
+            color: #666; /* Lighter color for description */
+        }
+
+        .btn-primary {
+            background-color: #e96f1d; /* Bootstrap primary button color */
+            border-color: #131313; /* Button border color */
+        }
+
+        @media  (max-width: 768px)  {
+            body{
+                width: 100%;
+            }
+
+            .list-group{
+                margin-top: 0%;
+            }
+            #block {
+                width: 100%; /* Full width for smaller screens */
+                margin: 5px 0; /* Adjust vertical margin */
+            }
+
+            .product-card {
+                height: auto; /* Allow flexibility in height */
+                margin: 10px 0; /* Space out product cards */
+            }
+
+            .horizontal-list {
+                flex-direction: column; /* Stack items vertically on small screens */
+                align-items: center; /* Center items */
+            }
+
+            
+        }
+     
+    </style>
+</head>
+<body >
+  <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/homePage}"><img src="/images/honeylogo.png" alt="" style="max-height: 60px;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+
+<!-- Centered link -->
+<ul class="nav navbar-nav" id="nav" >
+    <li><a th:href="@{/homePage}">Home</a></li>
+    <li><a href="shop">Shop</a></li>
+    <li><a href="about">About Us</a></li>
+</ul>                 
+                <ul class="nav navbar-nav navbar-right" id="nav">
+                    <li><a href="wishlist"><span class="glyphicon glyphicon-heart"></span> Wishlist</a></li>
+
+                    <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    <li><a href="signin"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container mt-12 text-dark">
+        <h1 class="text-center mb-4">Product Categories</h1>
+                <div class="list-group">
+                    <ul class="horizontal-list">
+                        <li><a class="list-group-item list-group-item-action" id="block" href="#collapseHoney" aria-expanded="false">Honey</a></li>
+                        <li><a class="list-group-item list-group-item-action" id="block" href="#collapsePollen" aria-expanded="false">Bee Pollen</a> </li>
+                        <li><a class="list-group-item list-group-item-action" id="block" href="#collapseRoyalJelly" aria-expanded="false">Royal Jelly</a></li>
+                        <li ><a class="list-group-item list-group-item-action" id="block" href="#collapsePropolis" aria-expanded="false">Bee Propolis</a>        </li>
+                        <li><a class="list-group-item list-group-item-action" id="block" href="#collapseSnackBar" aria-expanded="false">Snack Bar</a></li>
+                    </ul>
+                </div></div>
+                <div class="row" id="row-category">
+    <div class="col-md-10" >
+    <div class="panel-group mt-4" id="productCategories">
+        <!-- Honey Category -->
+        <div id="collapseHoney" class="collapse">
+            <div class="panel-body">
+                <h2>Honey Products</h2>
+                <div class="row">
+                   <a href="/produts/cloverhoney"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Clover honey.png" class="img-responsive" alt="Honey Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Clover Honey</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/wildflower"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Wild flower honey.png" class="img-responsive" alt="Honey Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Wildflower Honey</h3>
+                        </div>
+                    </div></a>
+                   <a href="/produts/buckwheat"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Buckwheat honey.png" class="img-responsive" alt="Honey Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">buckwheat Honey</h3>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="row">
+                    <a href="/produts/acacia"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Acacia honey.png" class="img-responsive" alt="Honey Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Acacia Honey</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/orangeblossom"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Orange blossom honey.png" class="img-responsive" alt="Honey Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Orange Blossom Honey</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/lavender"><div class="col-md-4 product-card">
+                        <img src="/images/Honey Products/Lavander honey.png" class="img-responsive" alt="Honey Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Lavender Honey</h3>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        <!-- Bee Pollen Category -->
+      <!-- Bee Pollen Category -->
+<div class="row" id="row-category">
+    <div class="col-md-10">
+        <div id="collapsePollen" class="collapse">
+            <div class="panel-body">
+                <h2>Bee Pollen Products</h2>
+                <div class="row">
+                   <a href="/produts/organicbee"> <div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/organic.jpg" class="img-responsive" alt="Bee Pollen Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Organic Bee Pollen</h3>
+                        </div>
+                    </div></a>
+                
+                   <a href="/produts/beepollencap"> <div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/Bee Pollen Capsules.jpg" class="img-responsive" alt="Bee Pollen Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Pollen Capsules</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/beepollengran"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/granules.jpg" class="img-responsive" alt="Bee Pollen Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Pollen Granules</h3>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="row">
+                    <a href="/produts/beepollenpowder"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/bee-pollen-powder.jpg" class="img-responsive" alt="Bee Pollen Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Pollen Powder</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/beepollenblend"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/hnoeyblend.webp" class="img-responsive" alt="Bee Pollen Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Pollen Honey Blend</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/beepollentinc"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Pollen Capsules/tinctures.webp" class="img-responsive" alt="Bee Pollen Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Pollen Tinctures</h3>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Royal Jelly Category -->
+<div class="row" id="row-category">
+    <div class="col-md-10">
+        <div id="collapseRoyalJelly" class="collapse">
+            <div class="panel-body">
+                <h2>Royal Jelly Products</h2>
+                <div class="row">
+                    <a href="/produts/royaljelly"><div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/pureroyal.jpg" class="img-responsive" alt="Royal Jelly Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Pure Royal Jelly</h3>
+                        </div>
+                    </div></a>
+
+                    <a href="/produts/royaljellycap"><div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/jellycapsules.avif" class="img-responsive" alt="Royal Jelly Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Royal Jelly Capsules</h3>
+                        </div>
+                    </div></a>
+
+                    <a href="/produts/royaljellycream"><div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/jellycream.jpg" class="img-responsive" alt="Royal Jelly Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Royal Jelly Cream</h3>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="row">
+                    <a href="/produts/royaljellyhoney"><div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/royaljellyhoney.webp" class="img-responsive" alt="Royal Jelly Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Royal Jelly Honey</h3>
+                        </div>
+                    </div></a>
+
+                   <a href="/produts/royaljellyshots"> <div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/Royal Jelly Cream.jpg" class="img-responsive" alt="Royal Jelly Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Royal Jelly Energy Shots</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/royaljellysupplement"><div class="col-md-4 product-card">
+                        <img src="/images/Royal Jelly/supplement.jpg" class="img-responsive" alt="Royal Jelly Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Royal Jelly Supplements</h3>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <!-- Bee Propolis Category -->
+<!-- Bee Propolis Category -->
+<div class="row" id="row-category">
+    <div class="col-md-10">
+        <div id="collapsePropolis" class="collapse">
+            <div class="panel-body">
+                <h2>Bee Propolis Products</h2>
+                <div class="row">
+                   <a href="/produts/beepropolistinc"> <div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/Bee propolis tincture.jpg" class="img-responsive" alt="Propolis Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Propolis Tincture</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/beepropolisspray"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/Bee propolis Spray.jpg" class="img-responsive" alt="Propolis Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Propolis Spray</h3>
+                        </div>
+                    </div></a>
+                   <a href="/produts/beepropoliscap"> <div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/bee-propolis-capsules.jpg" class="img-responsive" alt="Propolis Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Propolis Capsules</h3>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="row">
+                    <a href="/produts/beepropolisointment"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/Bee propolis throat relief spray.jpg" class="img-responsive" alt="Propolis Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Propolis Ointment</h3>
+                        </div>
+                    </div></a>
+                   <a href="/produts/beepropolistab"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/Bee Propolis Capsules.jpg" class="img-responsive" alt="Propolis Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Propolis Chewable Tablets</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/beepropolishoney"><div class="col-md-4 product-card">
+                        <img src="/images/Bee Propolis/hiney.webp" class="img-responsive" alt="Propolis Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Bee Propolis Honey</h3>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Snack Bar Category -->
+<div class="row" id="row-category">
+    <div class="col-md-10">
+        <div id="collapseSnackBar" class="collapse">
+            <div class="panel-body">
+                <h2>Snack Bar Products</h2>
+                <div class="row">
+                   <a href="/produts/honeyalmondbar"> <div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/Honey Almond Bar.jpg" class="img-responsive" alt="Snack Bar Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Honey Almond Bar</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/berryblissbar"><div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/Berry Bliss Bar.jpeg" class="img-responsive" alt="Snack Bar Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Berry Bliss Bar</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/peanutbutterbar"><div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/Peanut Butter Bar.png" class="img-responsive" alt="Snack Bar Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Peanut Butter Bar</h3>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="row">
+                    <a href="/produts/bumblebar"><div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/bumblebar.webp" class="img-responsive" alt="Snack Bar Product 1">
+                        <div class="caption">
+                            <h3 class="card-title">Bumble Bar</h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/oatsbar"><div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/Honey And Oats Bar.png" class="img-responsive" alt="Snack Bar Product 2">
+                        <div class="caption">
+                            <h3 class="card-title">Oats Granola Bars </h3>
+                        </div>
+                    </div></a>
+                    <a href="/produts/questbar"><div class="col-md-4 product-card">
+                        <img src="/images/Snack Bars/questbar.jpg" class="img-responsive" alt="Snack Bar Product 3">
+                        <div class="caption">
+                            <h3 class="card-title">Quest Bars</h3>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

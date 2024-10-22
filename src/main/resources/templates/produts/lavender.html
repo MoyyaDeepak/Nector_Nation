@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavender Honey - Product Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles2.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .product-page {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .rating {
+            color: gold;
+        }
+        .btn-add-to-cart {
+            background-color: #ffa41c;
+            border: none;
+            padding: 10px 20px;
+        }
+        .btn-add-to-cart:hover {
+            background-color: #e68a00;
+        }
+        .price {
+            font-size: 1.5em;
+            color: #b12704;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand" th:href="@{/homePage}"><img src="/images/honeylogo.png" alt="" style="max-height: 70px;"></a>
+				            </div>
+				            <div class="collapse navbar-collapse" id="navbar-collapse">
+				                <ul class="nav navbar-nav" id="nav">
+				                    <li><a th:href="@{/homePage}">Home</a></li>
+				                    <li><a th:href="@{/shop}">Shop</a></li>
+				                    <li><a th:href="@{/about}">About Us</a></li>
+				                </ul>
+				                <ul class="nav navbar-nav navbar-right" id="nav">
+				                    <li><a th:href="@{/wishlist}"><span class="glyphicon glyphicon-heart"></span> Wishlist</a></li>
+
+				                    <li><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+				                    <li><a th:href="@{/signin}"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 product-page">
+            <img src="../images/Honey Products/Lavander honey.png" class="product-image" alt="Honey Product 1">
+            <h1>Lavender Honey</h1>
+            <div class="rating">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span> <!-- 4 out of 5 stars -->
+            </div>
+            <p class="description">
+                Sourced from orange tree blossoms, this honey has a citrusy aroma and a light, floral flavor, making it great for tea and desserts.
+            </p>
+            <h2>Select Weight</h2>
+            <div class="form-group">
+                <label for="weightOptions">Choose your weight:</label>
+                <select id="weightOptions" class="form-control" onchange="updatePrice()">
+                    <option value="500" data-price="15.99">500g - ₹15.99</option>
+                    <option value="1000" data-price="29.99">1000g - ₹29.99</option>
+                    <option value="2500" data-price="69.99">2500g - ₹69.99</option>
+                </select>
+            </div>
+            <p class="price" id="selectedPrice"><strong>₹15.99</strong></p>
+            <button class="btn btn-add-to-cart" onclick="addToCart()">Add to Cart</button>
+            <button class="btn btn-wishlist" onclick=" addToWishlist()">Wishlist</button>
+            <button class="btn btn-buy-now" onclick="buyNow()">Buy Now</button> <!-- New Buy Now Button -->
+
+        </div>
+
+        <div class="col-md-6 product-details">
+            <h2>Product Details</h2>
+            <ul>
+                <li><strong>Brand:</strong> Pure Honey Co.</li>
+                <li><strong>Weight:</strong> Select above</li>
+                <li><strong>Flavor:</strong> Strong and Robust</li>
+                <li><strong>Ingredients:</strong> 100% Natural Lavender Honey</li>
+                <li><strong>Storage:</strong> Store in a cool, dry place.</li>
+            </ul>
+            <h2>Customer Questions & Answers</h2>
+            <p>Q: Is this honey raw?</p>
+            <p>A: Yes, our Lavender honey is raw and unprocessed.</p>
+            <h2>Customer Reviews</h2>
+            <p><strong>John Doe:</strong> Excellent quality honey! Perfect for baking.</p>
+            <p><strong>Jane Smith:</strong> Rich flavor, my favorite honey!</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updatePrice() {
+        const select = document.getElementById('weightOptions');
+        const price = select.options[select.selectedIndex].getAttribute('data-price');
+        document.getElementById('selectedPrice').innerHTML = `<strong>₹${price}</strong>`;
+    }
+
+    function addToCart() {
+        const select = document.getElementById('weightOptions');
+        const productName = 'Lavender Honey'; // Change this for each product page
+        const weight = select.options[select.selectedIndex].value;
+        const price = parseFloat(select.options[select.selectedIndex].getAttribute('data-price'));
+
+        // Create product object
+        const product = {
+            productName: productName,
+            weight: weight,
+            price: price,
+            quantity: 1
+        };
+
+        // Save to localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProductIndex = cart.findIndex(item => item.productName === productName && item.weight === weight);
+        
+        if (existingProductIndex > -1) {
+            // If product already exists, increase the quantity
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            // Add new product to cart
+            cart.push(product);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${productName} (${weight}g) has been added to your cart at ₹${price.toFixed(2)}`);
+    }
+
+    function addToWishlist() {
+        const select = document.getElementById('weightOptions');
+        const productName = 'Lavender Honey'; // Change this for each product page
+        const weight = select.options[select.selectedIndex].value;
+        const price = parseFloat(select.options[select.selectedIndex].getAttribute('data-price'));
+
+        const product = {
+            productName: productName,
+            weight: weight,
+            price: price
+        };
+
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const existingProductIndex = wishlist.findIndex(item => item.productName === productName && item.weight === weight);
+
+        if (existingProductIndex === -1) {
+            wishlist.push(product);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${productName} has been added to your wishlist!`);
+        } else {
+            alert(`${productName} is already in your wishlist.`);
+        }
+    }
+    function buyNow() {
+    const select = document.getElementById('weightOptions');
+    const productName = 'Lavender Honey'; // Change this for each product page
+    const weight = select.options[select.selectedIndex].value;
+    const price = parseFloat(select.options[select.selectedIndex].getAttribute('data-price'));
+
+    // Create product object
+    const product = {
+        productName: productName,
+        weight: weight,
+        price: price,
+        quantity: 1
+    };
+
+    // Save to localStorage for checkout
+    localStorage.setItem('checkoutCart', JSON.stringify([product])); // Directly save as an array
+    window.location.href = 'checkout'; // Redirect to checkout page
+}
+
+</script>
+
+
+</body>
+</html>

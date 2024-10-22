@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nector-Nation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles2.css">
+    <style>
+        body {
+            font-family: "Stylish", serif;
+  font-weight: 900;
+  font-style: normal;
+            background: linear-gradient(45deg, #ff9800, #ffc107, #ffeb3b);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background-color: black;
+            border: none;
+            margin-bottom: 0;
+        }
+        .navbar-nav > li > a:hover {
+            background-color: #4b7f69;
+        }
+        .section {
+            min-height: 60vh; /* Decreased height */
+            padding: 20px; /* Adjusted padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .left-slide, .right-slide {
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 1s forwards;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .right-slide {
+            transform: translateX(100%);
+        }
+        .farm-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+         h1 {
+            font-family: "Fraunces", serif;
+
+            color: #D69A1A; /* Honey color */
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 3.5em;
+        }
+        h4 {
+
+      
+            font-weight: bold;
+            color: azure;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+        
+
+        }
+        h3{
+            font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .transparent-bg {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border 0.3s;
+        }
+        .form-control:focus {
+            border-color: #D69A1A;
+            box-shadow: 0 0 5px rgba(214,154,26,0.5);
+        }
+        .btn-primary {
+            background-color: #D69A1A; /* Honey color */
+            border-color: #D69A1A;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #c78b1e;
+            border-color: #c78b1e;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+        }
+        .social-links a {
+            margin: 0 10px;
+            color: #D69A1A; /* Honey color */
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: #c78b1e;
+        }
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 800px;
+        }
+        .form-container {
+            width: 100%;
+            margin-right: 20px; /* Space between form and address */
+        }
+        .address-container {
+            width: 100%;
+            margin-left: 30px;;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="homePage"><img src="/images/honeylogo.png" alt="" style="max-height: 70px;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav" id="nav">
+                <li><a href="homePage">Home</a></li>
+                <li><a href="shop">Shop</a></li>
+                <li><a href="about">About Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" id="nav">
+                <li><a href="wishlist"><span class="glyphicon glyphicon-heart"></span> Wishlist</a></li>
+
+                <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="signin"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="section" style="background-color: white;">
+    <h1>About Us</h1>
+    <div class="text-center">
+        <img src="/images/bg5.jpeg" class="farm-image" alt="Farm Image">
+        <h3>Welcome to Nector-Nation, where we take pride in producing the finest honey and related products! Our dedication to quality and sustainability sets us apart in the honey industry.</h3>
+    </div>
+</div>
+
+<div class="section transparent-bg" style="background-image:linear-gradient(rgba(0, 0, 0, 0.312),rgba(0, 0, 0, 0.5)),url('/images/bg3.jpeg'); background-size: cover; ">
+    <h1 class="right-slide">Our History</h1>
+    <h4 class="right-slide">Nector-Nation was founded in 2010 with a vision to provide the purest honey products. Our journey began with a small apiary and has grown into a sustainable farm dedicated to environmentally friendly practices. Over the years, we have expanded our operations and now collaborate with local beekeepers to ensure that every jar of honey embodies our commitment to quality.</h4>
+</div>
+
+<div class="section" style="background-color: white;">
+    <h1 class="left-slide">Our Mission</h1>
+    <h3 class="left-slide">We are committed to sustainable beekeeping practices that support bee health and biodiversity. Our mission is to deliver high-quality honey while promoting awareness about the importance of bees to our ecosystem. We believe that by nurturing our bees and using sustainable methods, we can create a positive impact on the environment and our communities.</h3>
+</div>
+
+<div class="section transparent-bg" style="background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.337)),url('/images/bg4.jpeg'); background-size: cover; ">
+    <h1 class="right-slide">Usage Guidelines</h1>
+    <h4 class="right-slide">Honey can be enjoyed in many ways! Add it to your tea for a natural sweetener, spread it on toast for a delightful breakfast, or use it in your baking to enhance flavors. For best results, store in a cool, dry place to maintain its natural goodness. Remember, honey is not suitable for children under one year old.</h4>
+</div>
+
+<div class="section" style="background-color: white;">
+    <h1 class="left-slide">Contact Us</h1>
+    <div class="contact-container">
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea class="form-control" id="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+        <div class="address-container">
+            <h4>Contact Details</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li>Email: info@nectar-nation.com</li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: 123 Honey Lane, Beeville, TX 78901</li>
+            </ul>
+            <div class="social-links">
+                <h4>Follow Us</h4>
+                <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fa fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <h4>&copy; 2024 Nector-Nation. All rights reserved.</h4>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
